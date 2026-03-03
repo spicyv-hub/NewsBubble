@@ -43,21 +43,19 @@ cd Newsbubble
 #### Step 2: Run the App
 
 **Method A: Open Directly (Simplest)**
-1. Navigate to the `src` folder
-2. Double-click `index.html`
-3. App opens in your browser!
+1. Open `index.html` in your web browser
+2. App opens in your browser!
 
 **Method B: Use Local Server (Recommended)**
 
 If you have **Python** installed:
 ```bash
-cd src
 python -m http.server 8000
 ```
 
 If you have **Node.js** installed:
 ```bash
-npx http-server src -p 8000
+npx http-server . -p 8000
 ```
 
 Then open: **http://localhost:8000**
@@ -201,24 +199,23 @@ The app stores locally:
 ### File Structure
 ```
 Newsbubble/
-├── src/
-│   ├── index.html      # Main HTML file
-│   ├── styles.css      # All styles
-│   └── app.js          # App logic + D3 code
-├── README.md           # Project overview
-├── INSTALL.md          # This file
-└── TEST_GUIDE.md       # Testing instructions
+├── index.html      # Main HTML file
+├── styles.css      # All styles
+├── app.js          # App logic + D3 code
+├── README.md       # Project overview
+├── INSTALL.md      # This file
+└── TEST_GUIDE.md   # Testing instructions
 ```
 
 ### Modify the Code
-1. Edit files in `src/` folder
+1. Edit files in the root folder
 2. Refresh browser to see changes
 3. No build step required!
 
 ### Add Custom Features
 ```javascript
 // Example: Add a new topic color
-// Edit src/app.js, find CONFIG.colors
+// Edit app.js, find CONFIG.colors
 const CONFIG = {
     colors: [
         '#6366f1', // Add your color here
