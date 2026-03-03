@@ -1,0 +1,11 @@
+# Ignore Node modules and OS files
+node_modules/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# API keys (never commit these!)
+.env
+.env.local
+config.json
