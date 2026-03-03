@@ -4,26 +4,29 @@
 
 [![Status](https://img.shields.io/badge/status-ready-green)](.)
 [![License](https://img.shields.io/badge/license-MIT-blue)](.)
+[![Live Demo](https://img.shields.io/badge/demo-live-blue)](https://spicyv-hub.github.io/NewsBubble/)
 
 **NewsBubble** visualizes news topics as interactive bubbles. Bigger bubbles = more articles mentioning that topic. Click any bubble to read related articles.
 
 ---
 
-## 🎯 Quick Start
+## 🚀 Quick Start
 
-### Try Demo (30 seconds - No Setup)
-1. Open [`src/index.html`](src/index.html) in your browser
-2. Click **"🎯 Try Demo"**
-3. Explore the bubbles!
+### 🌐 Try Live Demo (No Installation)
+**Visit:** https://spicyv-hub.github.io/NewsBubble/
 
-### Or Run Locally
+### 💻 Install Locally (2 minutes)
+See [INSTALL.md](INSTALL.md) for detailed installation guide.
+
+**Quick install:**
 ```bash
-cd src
+git clone https://github.com/spicyv-hub/NewsBubble.git
+cd Newsbubble/src
 python -m http.server 8000
 # Open http://localhost:8000
 ```
 
-### Load Live News (Optional)
+### 🎮 Load Live News (Optional)
 1. Get free API key at [newsapi.org/register](https://newsapi.org/register)
 2. Click "Load Live News" in the app
 3. Enter your API key
