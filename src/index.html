@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewsBubble - See What's Trending</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <header class="hero">
+            <h1>🫧 NewsBubble</h1>
+            <p class="tagline">See what's trending in the news — at a glance</p>
+            <p class="description">Bigger bubbles = more mentions. Click any bubble to read the articles.</p>
+        </header>
+
+        <!-- Main Action Bar -->
+        <div class="main-controls">
+            <button id="demoBtn" class="btn-primary btn-large">
+                🎯 Try Demo (No Setup)
+            </button>
+            <button id="liveBtn" class="btn-secondary btn-large">
+                📡 Load Live News
+            </button>
+        </div>
+
+        <!-- Settings Panel (hidden by default) -->
+        <div id="settingsPanel" class="settings-panel hidden">
+            <div class="settings-header">
+                <h3>⚙️ Live News Settings</h3>
+                <button id="closeSettings" class="btn-icon">&times;</button>
+            </div>
+            
+            <div class="settings-content">
+                <div class="form-group">
+                    <label for="category">📂 News Category</label>
+                    <select id="category">
+                        <option value="general">📰 General News</option>
+                        <option value="business">💼 Business</option>
+                        <option value="technology">💻 Technology</option>
+                        <option value="entertainment">🎬 Entertainment</option>
+                        <option value="sports">⚽ Sports</option>
+                        <option value="science">🔬 Science</option>
+                        <option value="health">🏥 Health</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="country">🌍 Region</label>
+                    <select id="country">
+                        <option value="us">🇺🇸 United States</option>
+                        <option value="gb">🇬🇧 United Kingdom</option>
+                        <option value="ca">🇨🇦 Canada</option>
+                        <option value="au">🇦🇺 Australia</option>
+                        <option value="in">🇮🇳 India</option>
+                        <option value="de">🇩🇪 Germany</option>
+                        <option value="fr">🇫🇷 France</option>
+                        <option value="jp">🇯🇵 Japan</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="apiKey">🔑 NewsAPI Key</label>
+                    <input type="password" id="apiKey" placeholder="Get free key at newsapi.org">
+                    <p class="help-text">
+                        🔓 Free at <a href="https://newsapi.org/register" target="_blank">newsapi.org/register</a> 
+                        (no credit card, 100 requests/day)
+                    </p>
+                </div>
+
+                <button id="loadNewsBtn" class="btn-primary btn-full">
+                    🚀 Load Live News
+                </button>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div id="statusBar" class="status-bar hidden">
+            <span class="status-item">
+                <span class="status-label">Mode:</span>
+                <strong id="modeDisplay">Demo</strong>
+            </span>
+            <span class="status-item">
+                <span class="status-label">Articles:</span>
+                <strong id="articleCount">0</strong>
+            </span>
+            <span class="status-item">
+                <span class="status-label">Topics:</span>
+                <strong id="topicCount">0</strong>
+            </span>
+            <span class="status-item">
+                <span class="status-label">Updated:</span>
+                <strong id="lastUpdate">-</strong>
+            </span>
+            <button id="refreshBtn" class="btn-icon-refresh" title="Refresh">🔄</button>
+        </div>
+
+        <!-- Visualization Area -->
+        <div id="visualization" class="visualization">
+            <!-- Welcome Message -->
+            <div class="welcome-message">
+                <div class="welcome-icon">👋</div>
+                <h2>Welcome to NewsBubble!</h2>
+                <p>Choose how you want to explore the news:</p>
+                <div class="welcome-options">
+                    <div class="welcome-option">
+                        <button id="welcomeDemoBtn" class="btn-primary btn-large">
+                            🎯 Try Demo First
+                        </button>
+                        <p class="option-desc">See how it works with sample data (no setup needed)</p>
+                    </div>
+                    <div class="welcome-option">
+                        <button id="welcomeLiveBtn" class="btn-secondary btn-large">
+                            📡 Load Live News
+                        </button>
+                        <p class="option-desc">Get real headlines (requires free API key)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Article Panel (slides in from right) -->
+        <div id="articlePanel" class="article-panel hidden">
+            <div class="panel-header">
+                <h2 id="panelTitle">📰 Topic Articles</h2>
+                <button id="closePanel" class="btn-close">&times;</button>
+            </div>
+            <div id="articleList" class="article-list"></div>
+        </div>
+
+        <!-- How It Works -->
+        <section class="how-it-works">
+            <h3>ℹ️ How It Works</h3>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">1️⃣</div>
+                    <div class="step-text">
+                        <strong>Choose a mode</strong>
+                        <p>Demo for testing, Live for real news</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-icon">2️⃣</div>
+                    <div class="step-text">
+                        <strong>Watch the bubbles</strong>
+                        <p>Bigger = more articles mentioning that topic</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-icon">3️⃣</div>
+                    <div class="step-text">
+                        <strong>Click to explore</strong>
+                        <p>Tap any bubble to read related articles</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Built with D3.js • Data from NewsAPI.org</p>
+            <p class="footer-note">💡 Tip: In demo mode, bubbles show sample topics. Switch to live news for real headlines!</p>
+        </footer>
+    </div>
+
+    <!-- Tooltip -->
+    <div id="tooltip" class="tooltip hidden"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
